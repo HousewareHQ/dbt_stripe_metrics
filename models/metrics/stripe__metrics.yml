@@ -134,3 +134,17 @@ metrics:
         operator: "<="
         value: "0"
     dimensions: []
+
+  - name: stripe__bookings_monthly
+    label: Bookings Monthly
+    model: ref('stripe__main_transactions')
+    description: "Bookings at Monthly Granularity"
+    type: sum
+    sql: balance_transaction_amount
+    timestamp: created_at
+    time_grains: [month]
+    filters:
+      - field: balance_transaction_type
+        operator: "not in"
+        value: "('stripe_fee', 'payout', 'adjustment')"
+    dimensions: []
