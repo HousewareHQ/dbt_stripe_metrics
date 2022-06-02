@@ -1,5 +1,5 @@
 [sqlfluff]
-templater = dbt
+templater = jinja
 
 [sqlfluff:templater:jinja]
 apply_dbt_builtins = True
