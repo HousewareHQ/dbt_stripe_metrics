@@ -80,3 +80,57 @@ metrics:
         operator: "<="
         value: "0"
     dimensions: []
+
+  - name: stripe__churned_customer_revenue_monthly
+    label: Churned Customer Revenue Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Churned Customer Revenue at monthly granularity"
+    type: sum
+    sql: previous_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: "<="
+        value: "0"
+      - field: previous_month_revenue
+        operator: ">"
+        value: "0"
+    dimensions: []
+
+  - name: stripe__recovered_customer_revenue_monthly
+    label: Recovered Customer Revenue Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Recovered Customer Revenue at monthly granularity"
+    type: sum
+    sql: current_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: ">"
+        value: "0"
+      - field: previous_month_revenue
+        operator: "<="
+        value: "0"
+      - field: revenue_till_previous_month
+        operator: ">"
+        value: "0"
+    dimensions: []
+
+  - name: stripe__new_customer_revenue_monthly
+    label: New Customer Revenue Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "New Customer Revenue at Monthly Granularity"
+    type: sum
+    sql: current_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: ">"
+        value: "0"
+      - field: revenue_till_previous_month
+        operator: "<="
+        value: "0"
+    dimensions: []
