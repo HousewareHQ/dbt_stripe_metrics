@@ -12,5 +12,7 @@ jobs:
           python-version: "3.8"
       - name: Install SQLFluff
         run: "pip install sqlfluff==0.13.2"
+      - name: Install SQLFluff DBT Templater
+        run: "pip install sqlfluff-templater-dbt==0.13.2"
       - name: Lint models
         run: "sqlfluff lint models --dialect=ansi --verbose"
