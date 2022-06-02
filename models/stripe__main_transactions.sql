@@ -54,6 +54,7 @@ invoice_details as (
     status as invoice_status,
     subscription_id as subscription_id,
     min(period_start) as min_line_item_period_start,
+    max(period_end) as max_line_item_period_end,
   from invoice_details
   group by 1,2,3,4
 )
@@ -76,6 +77,8 @@ select
 	grouped_line_items.invoice_created_at,
 	grouped_line_items.invoice_status,
 	grouped_line_items.min_line_item_period_start,
+	grouped_line_items.max_line_item_period_end,
+	ROUND(DATE_DIFF(grouped_line_items.max_line_item_period_end, grouped_line_items.min_line_item_period_start, DAY)/30) as invoice_period,
 	balance_transaction.balance_transaction_id,
 	balance_transaction.created_at,
 	balance_transaction.available_on,
