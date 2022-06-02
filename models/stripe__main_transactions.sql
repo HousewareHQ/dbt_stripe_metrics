@@ -28,10 +28,6 @@ with balance_transaction as (
 
 	select *
 	from {{ var('plan') }}
-), product as (
-
-	select *
-	from {{ source('fivetran_stripe', 'product') }}
 ), refund as (
 
 	select *
@@ -45,14 +41,11 @@ invoice_details as (
     invoice_line_item.subscription_id as subscription_id,
     DATE(invoice_line_item.period_start, 'UTC') as period_start,
     DATE(invoice_line_item.period_end, 'UTC') as period_end,
-    product.name as product_name
   from invoice_line_item
   join invoice
     on invoice.invoice_id = invoice_line_item.invoice_id
   join plan
     on invoice_line_item.plan_id = plan.plan_id
-  join product
-    on plan.product_id = product.id
 ), grouped_line_items as (
 
   select
@@ -60,10 +53,9 @@ invoice_details as (
     created_at as invoice_created_at,
     status as invoice_status,
     subscription_id as subscription_id,
-    product_name,
     min(period_start) as min_line_item_period_start,
   from invoice_details
-  group by 1,2,3,4,5
+  group by 1,2,3,4
 )
 
 select
@@ -84,7 +76,6 @@ select
 	grouped_line_items.invoice_created_at,
 	grouped_line_items.invoice_status,
 	grouped_line_items.min_line_item_period_start,
-	grouped_line_items.product_name,
 	balance_transaction.balance_transaction_id,
 	balance_transaction.created_at,
 	balance_transaction.available_on,
