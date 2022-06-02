@@ -12,6 +12,17 @@ metrics:
     time_grains: [month]
     filters:
       - field: balance_transaction_type
-        operator: '='
+        operator: "="
         value: "'stripe_fee'"
+    dimensions: []
+
+  - name: stripe__mrr
+    label: MRR
+    model: ref('stripe__customer_monthly_revenue')
+    description: Monthly Recurring Revenue
+    type: sum
+    sql: current_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters: []
     dimensions: []
