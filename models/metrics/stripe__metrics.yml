@@ -2,14 +2,16 @@ version: 2
 sources: []
 models: []
 metrics:
-
-- name: stripe__platform_fees_monthly
-  label: Stripe Platform Fees Monthly
-  model: ref('stripe__platform_fees')
-  description: Sum of fees paid to Stripe monthly
-  type: sum
-  sql: balance_transaction_amount
-  timestamp: created_at
-  time_grains: [month]
-  filters: []
-  dimensions: []
+  - name: stripe__platform_fees_monthly
+    label: Stripe Platform Fees Monthly
+    model: ref('stripe__main_transactions')
+    description: Sum of fees paid to Stripe monthly
+    type: sum
+    sql: balance_transaction_amount
+    timestamp: created_at
+    time_grains: [month]
+    filters:
+      - field: balance_transaction_type
+        operator: '='
+        value: "'stripe_fee'"
+    dimensions: []
