@@ -1,4 +1,4 @@
--- depends_on: {{ ref('stripe__platform_fees') }}
+-- depends_on: {{ ref('stripe__main_transactions') }}
 
 select *
 from {{ metrics.metric(

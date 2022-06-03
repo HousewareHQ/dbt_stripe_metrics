@@ -2,14 +2,149 @@ version: 2
 sources: []
 models: []
 metrics:
+  - name: stripe__platform_fees_monthly
+    label: Stripe Platform Fees Monthly
+    model: ref('stripe__main_transactions')
+    description: Sum of fees paid to Stripe monthly
+    type: sum
+    sql: balance_transaction_amount
+    timestamp: created_at
+    time_grains: [month]
+    filters:
+      - field: balance_transaction_type
+        operator: "="
+        value: "'stripe_fee'"
+    dimensions: []
 
-- name: stripe__platform_fees_monthly
-  label: Stripe Platform Fees Monthly
-  model: ref('stripe__platform_fees')
-  description: Sum of fees paid to Stripe monthly
-  type: sum
-  sql: balance_transaction_amount
-  timestamp: created_at
-  time_grains: [month]
-  filters: []
-  dimensions: []
+  - name: stripe__mrr
+    label: MRR
+    model: ref('stripe__customer_monthly_revenue')
+    description: Monthly Recurring Revenue
+    type: sum
+    sql: current_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters: []
+    dimensions: []
+
+  - name: stripe__churned_customers_monthly
+    label: Churned Customers Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Customer Count: who have churned on a monthly basis"
+    type: count_distinct
+    sql: customer_id
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: "<="
+        value: "0"
+      - field: previous_month_revenue
+        operator: ">"
+        value: "0"
+    dimensions: []
+
+  - name: stripe__recovered_customers_monthly
+    label: Recovered Customers Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Customer Count: previously churned customers who have signed up on a monthly basis"
+    type: count_distinct
+    sql: customer_id
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: ">"
+        value: "0"
+      - field: previous_month_revenue
+        operator: "<="
+        value: "0"
+      - field: revenue_till_previous_month
+        operator: ">"
+        value: "0"
+    dimensions: []
+
+  - name: stripe__new_customers_monthly
+    label: New Customers Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Customer Count: who have signed up for the first time on a monthly basis"
+    type: count_distinct
+    sql: customer_id
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: ">"
+        value: "0"
+      - field: revenue_till_previous_month
+        operator: "<="
+        value: "0"
+    dimensions: []
+
+  - name: stripe__churned_customer_revenue_monthly
+    label: Churned Customer Revenue Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Churned Customer Revenue at monthly granularity"
+    type: sum
+    sql: previous_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: "<="
+        value: "0"
+      - field: previous_month_revenue
+        operator: ">"
+        value: "0"
+    dimensions: []
+
+  - name: stripe__recovered_customer_revenue_monthly
+    label: Recovered Customer Revenue Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "Recovered Customer Revenue at monthly granularity"
+    type: sum
+    sql: current_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: ">"
+        value: "0"
+      - field: previous_month_revenue
+        operator: "<="
+        value: "0"
+      - field: revenue_till_previous_month
+        operator: ">"
+        value: "0"
+    dimensions: []
+
+  - name: stripe__new_customer_revenue_monthly
+    label: New Customer Revenue Monthly
+    model: ref('stripe__customer_monthly_revenue')
+    description: "New Customer Revenue at Monthly Granularity"
+    type: sum
+    sql: current_month_revenue
+    timestamp: date_month
+    time_grains: [month]
+    filters:
+      - field: current_month_revenue
+        operator: ">"
+        value: "0"
+      - field: revenue_till_previous_month
+        operator: "<="
+        value: "0"
+    dimensions: []
+
+  - name: stripe__bookings_monthly
+    label: Bookings Monthly
+    model: ref('stripe__main_transactions')
+    description: "Bookings at Monthly Granularity"
+    type: sum
+    sql: balance_transaction_amount
+    timestamp: created_at
+    time_grains: [month]
+    filters:
+      - field: balance_transaction_type
+        operator: "not in"
+        value: "('stripe_fee', 'payout', 'adjustment')"
+    dimensions: []
