@@ -1,0 +1,244 @@
+version: 2
+
+models:
+  - name: dbt_metrics_default_calendar
+    description: ""
+    columns:
+      - name: date_day
+        description: ""
+      - name: date_week
+        description: ""
+      - name: date_month
+        description: ""
+      - name: date_quarter
+        description: ""
+      - name: date_year
+        description: ""
+
+  - name: stripe__bookings_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__bookings_monthly
+        description: ""
+
+  - name: stripe__churned_customer_revenue_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__churned_customer_revenue_monthly
+        description: ""
+
+  - name: stripe__churned_customers_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__churned_customers_monthly
+        description: ""
+
+  - name: stripe__customer_monthly_revenue
+    description: ""
+    columns:
+      - name: date_month
+        description: ""
+      - name: revenue_starting_date
+        description: ""
+      - name: revenue_ending_date
+        description: ""
+      - name: customer_id
+        description: ""
+      - name: current_month_revenue
+        description: ""
+      - name: revenue_till_previous_month
+        description: ""
+      - name: previous_month_revenue
+        description: ""
+      - name: current_annual_recurring_revenue
+        description: ""
+
+  - name: stripe__main_transactions
+    description: ""
+    columns:
+      - name: subscription_id
+        description: ""
+      - name: customer_id
+        description: ""
+      - name: customer_description
+        description: ""
+      - name: customer_email
+        description: ""
+      - name: subscription_status
+        description: ""
+      - name: billing
+        description: ""
+      - name: billing_cycle_anchor
+        description: ""
+      - name: subscription_created_at
+        description: ""
+      - name: subscription_cancel_at
+        description: ""
+      - name: subscription_canceled_at
+        description: ""
+      - name: subscription_ended_at
+        description: ""
+      - name: current_period_start
+        description: ""
+      - name: current_period_end
+        description: ""
+      - name: invoice_id
+        description: ""
+      - name: invoice_created_at
+        description: ""
+      - name: invoice_status
+        description: ""
+      - name: min_line_item_period_start
+        description: ""
+      - name: max_line_item_period_end
+        description: ""
+      - name: invoice_period
+        description: ""
+      - name: balance_transaction_id
+        description: ""
+      - name: created_at
+        description: ""
+      - name: available_on
+        description: ""
+      - name: currency
+        description: ""
+      - name: balance_transaction_description
+        description: ""
+      - name: balance_transaction_amount
+        description: ""
+      - name: refund_amount
+        description: ""
+      - name: balance_transaction_fee
+        description: ""
+      - name: balance_transaction_net
+        description: ""
+      - name: balance_transaction_type
+        description: ""
+      - name: refund_metadata
+        description: ""
+
+  - name: stripe__mrr
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__mrr
+        description: ""
+      - name: roll_avg_quarter
+        description: ""
+
+  - name: stripe__mrr_main_transactions
+    description: ""
+    columns:
+      - name: subscription_id
+        description: ""
+      - name: customer_id
+        description: ""
+      - name: customer_description
+        description: ""
+      - name: customer_email
+        description: ""
+      - name: subscription_status
+        description: ""
+      - name: billing
+        description: ""
+      - name: billing_cycle_anchor
+        description: ""
+      - name: subscription_created_at
+        description: ""
+      - name: subscription_cancel_at
+        description: ""
+      - name: subscription_canceled_at
+        description: ""
+      - name: subscription_ended_at
+        description: ""
+      - name: current_period_start
+        description: ""
+      - name: current_period_end
+        description: ""
+      - name: invoice_id
+        description: ""
+      - name: invoice_created_at
+        description: ""
+      - name: invoice_status
+        description: ""
+      - name: min_line_item_period_start
+        description: ""
+      - name: max_line_item_period_end
+        description: ""
+      - name: invoice_period
+        description: ""
+      - name: balance_transaction_id
+        description: ""
+      - name: created_at
+        description: ""
+      - name: available_on
+        description: ""
+      - name: currency
+        description: ""
+      - name: balance_transaction_description
+        description: ""
+      - name: balance_transaction_amount
+        description: ""
+      - name: refund_amount
+        description: ""
+      - name: balance_transaction_fee
+        description: ""
+      - name: balance_transaction_net
+        description: ""
+      - name: balance_transaction_type
+        description: ""
+      - name: refund_metadata
+        description: ""
+      - name: monthly_revenue
+        description: ""
+      - name: revenue_starting_date
+        description: ""
+      - name: revenue_ending_date
+        description: ""
+
+  - name: stripe__new_customer_revenue_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__new_customer_revenue_monthly
+        description: ""
+
+  - name: stripe__new_customers_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__new_customers_monthly
+        description: ""
+
+  - name: stripe__platform_fees_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__platform_fees_monthly
+        description: ""
+
+  - name: stripe__recovered_customer_revenue_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__recovered_customer_revenue_monthly
+        description: ""
+
+  - name: stripe__recovered_customers_monthly
+    description: ""
+    columns:
+      - name: period
+        description: ""
+      - name: stripe__recovered_customers_monthly
+        description: ""
