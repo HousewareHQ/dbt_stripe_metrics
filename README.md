@@ -7,7 +7,7 @@ This package enables you to access commonly used metrics on top of Stripe transa
 
 ## Metrics 
 
-This package contains tranformed models built on top of [Fivetran Stripe source package](https://github.com/fivetran/dbt_stripe_source). A dependency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The metrics offered by this package are described below
+This package contains transformed models built on top of [Fivetran Stripe source package](https://github.com/fivetran/dbt_stripe_source). A dependency on the source package is declared in this package's `packages.yml` file, so it will automatically download when you run `dbt deps`. The metrics offered by this package are described below
 
 | **metric**                          | **description**                                                                                                                                                                                                                              |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -18,7 +18,7 @@ This package contains tranformed models built on top of [Fivetran Stripe source 
 | [stripe__new_customer_revenue_monthly](https://github.com/HousewareHQ/dbt_stripe_metrics/blob/main/models/metrics/stripe__new_customers_monthly.sql)    |         Monthly revenue due to customers that signed up for the first time.                                                               |
 | [stripe__new_customers_monthly](https://github.com/HousewareHQ/dbt_stripe_metrics/blob/main/models/metrics/stripe__churned_customers_monthly.sql)    |  Monthly count of customers that signed up for the first time.                                     |
 | [stripe__platform_fees_monthly](https://github.com/HousewareHQ/dbt_stripe_metrics/blob/main/models/metrics/stripe__platform_fees_monthly.sql)    | Monthly fees paid to Stripe.                                                         |
-| [stripe__recovered_customer_revenue_monthly](https://github.com/HousewareHQ/dbt_stripe_metrics/blob/main/models/metrics/stripe__recovered_customer_revenue_monthly.sql)    | Monthly revenue due recovery of previously churned customers.               |
+| [stripe__recovered_customer_revenue_monthly](https://github.com/HousewareHQ/dbt_stripe_metrics/blob/main/models/metrics/stripe__recovered_customer_revenue_monthly.sql)    | Monthly revenue due to recovery of previously churned customers.               |
 | [stripe__recovered_customers_monthly](https://github.com/HousewareHQ/dbt_stripe_metrics/blob/main/models/metrics/stripe__recovered_customers_monthly.sql)    | Monthly number of previously churned customers who signed up again.|                                                                                                                                 
 
 # 🎯 How do I use the dbt package?
@@ -73,7 +73,7 @@ models:
 ```
 
 
-# 🗄 Which databases are supported?
+# 🗄 Which warehouses are supported?
 This package has been tested on BigQuery, Snowflake.
 
 
@@ -91,6 +91,6 @@ on the best workflow for contributing to a package.
 - Check out [Houseware's blog](https://www.houseware.io/blog)
 - Learn more about dbt [in the dbt docs](https://docs.getdbt.com/docs/introduction)
 - Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](http://slack.getdbt.com/) on Slack for live discussions and support
+- Join the [chat](https://slack.getdbt.com/) on Slack for live discussions and support
 - Find [dbt events](https://events.getdbt.com) near you
 - Check out [the dbt blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices

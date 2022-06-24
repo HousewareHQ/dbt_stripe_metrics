@@ -8,9 +8,6 @@ require-dbt-version: [">=1.0.0", "<2.0.0"]
 models:
   stripe_metrics:
     +materialized: table
-  
-  stripe_source:
-    +schema: stg
 
 vars:
   stripe_metrics:
@@ -32,6 +29,3 @@ vars:
     using_invoices: true
     using_payment_method: true
     using_subscriptions: true
-
-  stripe_source:
-    stripe_schema: fivetran_stripe
