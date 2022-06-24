@@ -5,7 +5,7 @@ metrics:
   - name: stripe__platform_fees_monthly
     label: Stripe Platform Fees Monthly
     model: ref('stripe__main_transactions')
-    description: Sum of fees paid to Stripe monthly
+    description: "Monthly fees paid to Stripe."
     type: sum
     sql: balance_transaction_amount
     timestamp: created_at
@@ -19,7 +19,7 @@ metrics:
   - name: stripe__mrr
     label: MRR
     model: ref('stripe__customer_monthly_revenue')
-    description: Monthly Recurring Revenue
+    description: "Monthly recurring revenue."
     type: sum
     sql: current_month_revenue
     timestamp: date_month
@@ -30,7 +30,7 @@ metrics:
   - name: stripe__churned_customers_monthly
     label: Churned Customers Monthly
     model: ref('stripe__customer_monthly_revenue')
-    description: "Customer Count: who have churned on a monthly basis"
+    description: "Monthly count of customers that churned."
     type: count_distinct
     sql: customer_id
     timestamp: date_month
@@ -47,7 +47,7 @@ metrics:
   - name: stripe__recovered_customers_monthly
     label: Recovered Customers Monthly
     model: ref('stripe__customer_monthly_revenue')
-    description: "Customer Count: previously churned customers who have signed up on a monthly basis"
+    description: "Monthly count of previously churned customers who signed up again."
     type: count_distinct
     sql: customer_id
     timestamp: date_month
@@ -67,7 +67,7 @@ metrics:
   - name: stripe__new_customers_monthly
     label: New Customers Monthly
     model: ref('stripe__customer_monthly_revenue')
-    description: "Customer Count: who have signed up for the first time on a monthly basis"
+    description: "Monthly count of customers that signed up for the first time."
     type: count_distinct
     sql: customer_id
     timestamp: date_month
@@ -84,7 +84,7 @@ metrics:
   - name: stripe__churned_customer_revenue_monthly
     label: Churned Customer Revenue Monthly
     model: ref('stripe__customer_monthly_revenue')
-    description: "Churned Customer Revenue at monthly granularity"
+    description: "Monthly revenue lost due to churned customers."
     type: sum
     sql: previous_month_revenue
     timestamp: date_month
@@ -101,7 +101,7 @@ metrics:
   - name: stripe__recovered_customer_revenue_monthly
     label: Recovered Customer Revenue Monthly
     model: ref('stripe__customer_monthly_revenue')
-    description: "Recovered Customer Revenue at monthly granularity"
+    description: "Monthly revenue due to recovery of previously churned customers."
     type: sum
     sql: current_month_revenue
     timestamp: date_month
@@ -121,7 +121,7 @@ metrics:
   - name: stripe__new_customer_revenue_monthly
     label: New Customer Revenue Monthly
     model: ref('stripe__customer_monthly_revenue')
-    description: "New Customer Revenue at Monthly Granularity"
+    description: "Monthly revenue due to customers that signed up for the first time."
     type: sum
     sql: current_month_revenue
     timestamp: date_month
@@ -138,7 +138,7 @@ metrics:
   - name: stripe__bookings_monthly
     label: Bookings Monthly
     model: ref('stripe__main_transactions')
-    description: "Bookings at Monthly Granularity"
+    description: "Monthly revenue from all transactions."
     type: sum
     sql: balance_transaction_amount
     timestamp: created_at
