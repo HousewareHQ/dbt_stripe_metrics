@@ -16,7 +16,7 @@ models:
         description: ""
 
   - name: stripe__bookings_monthly
-    description: ""
+    description: "Monthly revenue from all transactions."
     columns:
       - name: period
         description: ""
@@ -24,7 +24,7 @@ models:
         description: ""
 
   - name: stripe__churned_customer_revenue_monthly
-    description: ""
+    description: "Monthly revenue lost due to churned customers."
     columns:
       - name: period
         description: ""
@@ -32,7 +32,7 @@ models:
         description: ""
 
   - name: stripe__churned_customers_monthly
-    description: ""
+    description: "Monthly count of customers that churned."
     columns:
       - name: period
         description: ""
@@ -40,7 +40,7 @@ models:
         description: ""
 
   - name: stripe__customer_monthly_revenue
-    description: ""
+    description: "Customer wise revenue for each month ranging from 2010-01-31 to 2030-12-31"
     columns:
       - name: date_month
         description: ""
@@ -60,7 +60,7 @@ models:
         description: ""
 
   - name: stripe__main_transactions
-    description: ""
+    description: "Stripe transactions enriched with subscription, customer, invoice details and other relevant data."
     columns:
       - name: subscription_id
         description: ""
@@ -124,7 +124,7 @@ models:
         description: ""
 
   - name: stripe__mrr
-    description: ""
+    description: "Monthly recurring revenue."
     columns:
       - name: period
         description: ""
@@ -134,7 +134,7 @@ models:
         description: ""
 
   - name: stripe__mrr_main_transactions
-    description: ""
+    description: "Model derived from stripe__main_transactions used for calculating Monthly Recurring Revenue metric"
     columns:
       - name: subscription_id
         description: ""
@@ -204,7 +204,7 @@ models:
         description: ""
 
   - name: stripe__new_customer_revenue_monthly
-    description: ""
+    description: "Monthly revenue due to customers that signed up for the first time."
     columns:
       - name: period
         description: ""
@@ -212,7 +212,7 @@ models:
         description: ""
 
   - name: stripe__new_customers_monthly
-    description: ""
+    description: "Monthly count of customers that signed up for the first time."
     columns:
       - name: period
         description: ""
@@ -220,7 +220,7 @@ models:
         description: ""
 
   - name: stripe__platform_fees_monthly
-    description: ""
+    description: "Monthly fees paid to Stripe."
     columns:
       - name: period
         description: ""
@@ -228,7 +228,7 @@ models:
         description: ""
 
   - name: stripe__recovered_customer_revenue_monthly
-    description: ""
+    description: "Monthly revenue due recovery of previously churned customers."
     columns:
       - name: period
         description: ""
@@ -236,7 +236,7 @@ models:
         description: ""
 
   - name: stripe__recovered_customers_monthly
-    description: ""
+    description: "Monthly number of previously churned customers who signed up again."
     columns:
       - name: period
         description: ""
