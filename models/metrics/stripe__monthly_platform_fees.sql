@@ -2,7 +2,7 @@
 
 select *
 from {{ metrics.metric(
-	metric_name='stripe__platform_fees_monthly',
+	metric_name='stripe__monthly_platform_fees',
 	grain='month',
 	dimensions=[],
 	secondary_calculations=[]

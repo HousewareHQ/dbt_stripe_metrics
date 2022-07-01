@@ -2,8 +2,8 @@ version: 2
 sources: []
 models: []
 metrics:
-  - name: stripe__platform_fees_monthly
-    label: Stripe Platform Fees Monthly
+  - name: stripe__monthly_platform_fees
+    label: Monthly Stripe Platform Fees
     model: ref('stripe__main_transactions')
     description: "Monthly fees paid to Stripe."
     type: sum
@@ -18,7 +18,7 @@ metrics:
 
   - name: stripe__mrr
     label: MRR
-    model: ref('stripe__customer_monthly_revenue')
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly recurring revenue."
     type: sum
     sql: current_month_revenue
@@ -27,9 +27,9 @@ metrics:
     filters: []
     dimensions: []
 
-  - name: stripe__churned_customers_monthly
-    label: Churned Customers Monthly
-    model: ref('stripe__customer_monthly_revenue')
+  - name: stripe__monthly_churned_customers
+    label: Monthly Churned Customers
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly count of customers that churned."
     type: count_distinct
     sql: customer_id
@@ -44,9 +44,9 @@ metrics:
         value: "0"
     dimensions: []
 
-  - name: stripe__recovered_customers_monthly
-    label: Recovered Customers Monthly
-    model: ref('stripe__customer_monthly_revenue')
+  - name: stripe__monthly_recovered_customers
+    label: Monthly Recovered Customers
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly count of previously churned customers who signed up again."
     type: count_distinct
     sql: customer_id
@@ -64,9 +64,9 @@ metrics:
         value: "0"
     dimensions: []
 
-  - name: stripe__new_customers_monthly
-    label: New Customers Monthly
-    model: ref('stripe__customer_monthly_revenue')
+  - name: stripe__monthly_new_customers
+    label: Monthly New Customers
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly count of customers that signed up for the first time."
     type: count_distinct
     sql: customer_id
@@ -81,9 +81,9 @@ metrics:
         value: "0"
     dimensions: []
 
-  - name: stripe__churned_customer_revenue_monthly
-    label: Churned Customer Revenue Monthly
-    model: ref('stripe__customer_monthly_revenue')
+  - name: stripe__monthly_churned_customer_revenue
+    label: Monthly Churned Customer Revenue
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly revenue lost due to churned customers."
     type: sum
     sql: previous_month_revenue
@@ -98,9 +98,9 @@ metrics:
         value: "0"
     dimensions: []
 
-  - name: stripe__recovered_customer_revenue_monthly
-    label: Recovered Customer Revenue Monthly
-    model: ref('stripe__customer_monthly_revenue')
+  - name: stripe__monthly_recovered_customer_revenue
+    label: Monthly Recovered Customer Revenue
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly revenue due to recovery of previously churned customers."
     type: sum
     sql: current_month_revenue
@@ -118,9 +118,9 @@ metrics:
         value: "0"
     dimensions: []
 
-  - name: stripe__new_customer_revenue_monthly
-    label: New Customer Revenue Monthly
-    model: ref('stripe__customer_monthly_revenue')
+  - name: stripe__monthly_new_customer_revenue
+    label: Monthly New Customer Revenue
+    model: ref('stripe__monthly_customer_revenue')
     description: "Monthly revenue due to customers that signed up for the first time."
     type: sum
     sql: current_month_revenue
@@ -135,8 +135,8 @@ metrics:
         value: "0"
     dimensions: []
 
-  - name: stripe__bookings_monthly
-    label: Bookings Monthly
+  - name: stripe__monthly_bookings
+    label: Monthly Bookings
     model: ref('stripe__main_transactions')
     description: "Monthly revenue from all transactions."
     type: sum
