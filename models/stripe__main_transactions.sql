@@ -40,7 +40,7 @@ invoice_details as (
     invoice.status,
     invoice_line_item.subscription_id as subscription_id,
     DATE(invoice_line_item.period_start, 'UTC') as period_start,
-    DATE(invoice_line_item.period_end, 'UTC') as period_end,
+    DATE(invoice_line_item.period_end, 'UTC') as period_end
   from invoice_line_item
   join invoice
     on invoice.invoice_id = invoice_line_item.invoice_id
@@ -54,7 +54,7 @@ invoice_details as (
     status as invoice_status,
     subscription_id as subscription_id,
     min(period_start) as min_line_item_period_start,
-    max(period_end) as max_line_item_period_end,
+    max(period_end) as max_line_item_period_end
   from invoice_details
   group by 1,2,3,4
 )

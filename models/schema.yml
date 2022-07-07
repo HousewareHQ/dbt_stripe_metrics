@@ -1,20 +1,6 @@
 version: 2
 
 models:
-  - name: dbt_metrics_default_calendar
-    description: ""
-    columns:
-      - name: date_day
-        description: ""
-      - name: date_week
-        description: ""
-      - name: date_month
-        description: ""
-      - name: date_quarter
-        description: ""
-      - name: date_year
-        description: ""
-
   - name: stripe__monthly_bookings
     description: "Monthly revenue from all transactions."
     columns:
