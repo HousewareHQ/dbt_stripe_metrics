@@ -37,7 +37,7 @@ Include in your `packages.yml`
 ```yaml
 packages:
   - git: "https://github.com/HousewareHQ/dbt_stripe_metrics.git"
-    revision: v0.1.0
+    revision: v0.1.1
 ```
 
 ## Step 3: Define database and schema variables

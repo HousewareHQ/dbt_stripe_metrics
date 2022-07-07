@@ -37,8 +37,20 @@ monthly_revenue as (
 	from
 		customer_calendar
 		left outer join main_transactions on customer_calendar.customer_id = main_transactions.customer_id
-		and customer_calendar.date_month_end >= main_transactions.revenue_starting_date
-		and customer_calendar.date_month_end < main_transactions.revenue_ending_date
+		and
+		(
+			(
+				concat(cast(extract(year from customer_calendar.date_month_end) as string), "-", cast(extract(month from customer_calendar.date_month_end) as string))
+				=
+				concat(cast(extract(year from main_transactions.revenue_starting_date) as string), "-", cast(extract(month from main_transactions.revenue_starting_date) as string))
+			)
+			or
+			(
+				customer_calendar.date_month_end > main_transactions.revenue_starting_date
+				and
+				customer_calendar.date_month_end < main_transactions.revenue_ending_date
+			)
+		)
 )
 select
 	date_month,
