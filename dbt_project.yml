@@ -26,6 +26,5 @@ vars:
     refund: "{{ ref('stg_stripe__refund') }}"
     subscription: "{{ ref('stg_stripe__subscription') }}"
 
-    using_invoices: true
-    using_payment_method: true
-    using_subscriptions: true
+  stripe_source:
+    stripe__subscription_history: true
