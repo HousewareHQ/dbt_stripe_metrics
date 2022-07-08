@@ -40,9 +40,9 @@ monthly_revenue as (
 		and
 		(
 			(
-				concat(cast(extract(year from customer_calendar.date_month_end) as string), "-", cast(extract(month from customer_calendar.date_month_end) as string))
+				concat(cast(extract(year from customer_calendar.date_month_end) as string), '-', cast(extract(month from customer_calendar.date_month_end) as string))
 				=
-				concat(cast(extract(year from main_transactions.revenue_starting_date) as string), "-", cast(extract(month from main_transactions.revenue_starting_date) as string))
+				concat(cast(extract(year from main_transactions.revenue_starting_date) as string), '-', cast(extract(month from main_transactions.revenue_starting_date) as string))
 			)
 			or
 			(
