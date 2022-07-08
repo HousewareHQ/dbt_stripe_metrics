@@ -78,7 +78,7 @@ select
 	grouped_line_items.invoice_status,
 	grouped_line_items.min_line_item_period_start,
 	grouped_line_items.max_line_item_period_end,
-	ROUND(DATE_DIFF(grouped_line_items.max_line_item_period_end, grouped_line_items.min_line_item_period_start, DAY)/30) as invoice_period,
+	ROUND(TIMEDIFF(DAY, grouped_line_items.max_line_item_period_end, grouped_line_items.min_line_item_period_start)/30) as invoice_period,
 	balance_transaction.balance_transaction_id,
 	balance_transaction.created_at,
 	balance_transaction.available_on,
