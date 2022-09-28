@@ -1,5 +1,10 @@
 # Stripe Metrics dbt Package ([Docs](https://housewarehq.github.io/dbt_stripe_metrics))
 
+# 🛑 Few things to keep in mind
+These packages are under active development and are expected to change with dbt metrics as it evolves over time. As of now, dbt metrics requires users to define models to calculate metrics and these models are persisted on the warehouse. Keeping this in mind, we have currently modelled our packages such that metrics and the models calculating these metrics have a 1:1 mapping, which is why you will see multiple metrics for the same conceptual metric entity accounting for different time grains and dimensions. In future, with the roll out of dbt Server and evolution of dbt metrics, we expect to streamline our packages to remove these redundancies.
+
+The metrics in these packages are transformed on top of source data ETL'd via Fivetran to your warehouse. Make sure you have connected your SaaS source with Fivetran for the packages to work properly.
+
 # 📣 What does this dbt package do?
 This package provides pre-built metrics for Stripe data from [Fivetran's connector](https://fivetran.com/docs/applications/stripe). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/stripe#schemainformation).
 
