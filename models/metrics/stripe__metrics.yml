@@ -11,7 +11,7 @@ metrics:
     timestamp: created_at
     time_grains: [month]
     filters:
-      - field: balance_transaction_calculation_method
+      - field: balance_transaction_type
         operator: "="
         value: "'stripe_fee'"
     dimensions: []
@@ -144,7 +144,7 @@ metrics:
     timestamp: created_at
     time_grains: [month]
     filters:
-      - field: balance_transaction_calculation_method
+      - field: balance_transaction_type
         operator: "not in"
         value: "('stripe_fee', 'payout', 'adjustment')"
     dimensions: []
