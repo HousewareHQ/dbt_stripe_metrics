@@ -6,8 +6,8 @@ metrics:
     label: Monthly Stripe Platform Fees
     model: ref('stripe__main_transactions')
     description: "Monthly fees paid to Stripe."
-    type: sum
-    sql: balance_transaction_amount
+    calculation_method: sum
+    expression: balance_transaction_amount
     timestamp: created_at
     time_grains: [month]
     filters:
@@ -20,8 +20,8 @@ metrics:
     label: MRR
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly recurring revenue."
-    type: sum
-    sql: current_month_revenue
+    calculation_method: sum
+    expression: current_month_revenue
     timestamp: date_month
     time_grains: [month]
     filters: []
@@ -31,8 +31,8 @@ metrics:
     label: Monthly Churned Customers
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly count of customers that churned."
-    type: count_distinct
-    sql: customer_id
+    calculation_method: count_distinct
+    expression: customer_id
     timestamp: date_month
     time_grains: [month]
     filters:
@@ -48,8 +48,8 @@ metrics:
     label: Monthly Recovered Customers
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly count of previously churned customers who signed up again."
-    type: count_distinct
-    sql: customer_id
+    calculation_method: count_distinct
+    expression: customer_id
     timestamp: date_month
     time_grains: [month]
     filters:
@@ -68,8 +68,8 @@ metrics:
     label: Monthly New Customers
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly count of customers that signed up for the first time."
-    type: count_distinct
-    sql: customer_id
+    calculation_method: count_distinct
+    expression: customer_id
     timestamp: date_month
     time_grains: [month]
     filters:
@@ -85,8 +85,8 @@ metrics:
     label: Monthly Churned Customer Revenue
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly revenue lost due to churned customers."
-    type: sum
-    sql: previous_month_revenue
+    calculation_method: sum
+    expression: previous_month_revenue
     timestamp: date_month
     time_grains: [month]
     filters:
@@ -102,8 +102,8 @@ metrics:
     label: Monthly Recovered Customer Revenue
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly revenue due to recovery of previously churned customers."
-    type: sum
-    sql: current_month_revenue
+    calculation_method: sum
+    expression: current_month_revenue
     timestamp: date_month
     time_grains: [month]
     filters:
@@ -122,8 +122,8 @@ metrics:
     label: Monthly New Customer Revenue
     model: ref('stripe__monthly_customer_revenue')
     description: "Monthly revenue due to customers that signed up for the first time."
-    type: sum
-    sql: current_month_revenue
+    calculation_method: sum
+    expression: current_month_revenue
     timestamp: date_month
     time_grains: [month]
     filters:
@@ -139,8 +139,8 @@ metrics:
     label: Monthly Bookings
     model: ref('stripe__main_transactions')
     description: "Monthly revenue from all transactions."
-    type: sum
-    sql: balance_transaction_amount
+    calculation_method: sum
+    expression: balance_transaction_amount
     timestamp: created_at
     time_grains: [month]
     filters:
